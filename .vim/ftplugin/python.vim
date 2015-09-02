@@ -1,0 +1,10 @@
+syntax on
+setlocal autoindent
+setlocal smartindent
+setlocal textwidth=79
+setlocal tabstop=4
+setlocal shiftwidth=4
+setlocal cursorline
+setlocal showmatch
+setlocal number
+setlocal foldmethod=indent

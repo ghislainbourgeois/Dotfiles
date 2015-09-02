@@ -4,7 +4,7 @@
 set nocompatible
 filetype off
 
-if filereadable('~/.vim/bundle/vundle.vim')
+if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
 
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
@@ -87,6 +87,12 @@ nnoremap <down> <nop>
 nnoremap j gj
 nnoremap k gk
 
+" Simplify window movements
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
 " }}}
 
 " FileTypes {{{
@@ -104,18 +110,6 @@ if has("autocmd")
 
     " Shell files
     autocmd FileType sh set omnifunc=sh
-    
-    " Python files
-    autocmd FileType py syntax on
-    autocmd FileType py set autoindent
-    autocmd FileType py set smartindent
-    autocmd FileType py set textwidth=79
-    autocmd FileType py set tabstop=4
-    autocmd FileType py set shiftwidth=4
-    autocmd FileType py set cursorline
-    autocmd FileType py set showmatch
-    autocmd FileType py set number
-    autocmd FileType py set foldmethod=indent
 endif
 " }}}
 
