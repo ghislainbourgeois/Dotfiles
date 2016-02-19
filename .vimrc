@@ -13,6 +13,7 @@ if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
 
     Plugin 'tpope/vim-fugitive'
 
+    Plugin 'pearofducks/ansible-vim'
 endif
 
 filetype on
@@ -110,6 +111,9 @@ if has("autocmd")
 
     " Shell files
     autocmd FileType sh set omnifunc=sh
+
+    " YAML files
+    autocmd FileType yaml setl indentkeys-=<:>
 endif
 " }}}
 
