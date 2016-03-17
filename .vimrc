@@ -14,6 +14,8 @@ if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
     Plugin 'tpope/vim-fugitive'
 
     Plugin 'pearofducks/ansible-vim'
+
+    call vundle#end()
 endif
 
 filetype on
