@@ -17,6 +17,8 @@ if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
 
     Plugin 'fholgado/minibufexpl.vim'
 
+    Plugin 'solarized'
+
     call vundle#end()
 endif
 
@@ -26,7 +28,7 @@ filetype on
 " Colors {{{
 set background=dark             	" set color scheme for dark backgrounds
 set t_Co=256
-colorscheme murphy
+colorscheme solarized
 " }}}
 
 " Terminal {{{
