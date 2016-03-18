@@ -15,6 +15,8 @@ if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
 
     Plugin 'pearofducks/ansible-vim'
 
+    Plugin 'fholgado/minibufexpl.vim'
+
     call vundle#end()
 endif
 
