@@ -16,6 +16,8 @@ if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
     Plugin 'pearofducks/ansible-vim'
 
     Plugin 'fholgado/minibufexpl.vim'
+    
+    Plugin 'scrooloose/nerdtree'
 
     Plugin 'solarized'
 
@@ -100,6 +102,7 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+nnoremap <C-n> :NERDTreeToggle<CR>
 " }}}
 
 " FileTypes {{{
