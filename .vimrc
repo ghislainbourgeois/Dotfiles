@@ -21,6 +21,10 @@ if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
 
     Plugin 'solarized'
 
+    Plugin 'nvie/vim-flake8'
+
+    Plugin 'jgdavey/tslime.vim'
+
     call vundle#end()
 endif
 
