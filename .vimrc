@@ -33,7 +33,7 @@ filetype on
 
 " Colors {{{
 set background=dark             	" set color scheme for dark backgrounds
-set t_Co=256
+set t_Co=16
 colorscheme solarized
 " }}}
 
