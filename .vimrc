@@ -33,13 +33,16 @@ filetype on
 
 " Colors {{{
 set background=dark             	" set color scheme for dark backgrounds
-set t_Co=16
+set t_Co=256
 colorscheme solarized
 " }}}
 
 " Terminal {{{
 set title                       	" update terminal title
 set ttyfast                     	" fast terminal
+if exists('$TMUX')
+    set term=screen-256color
+endif
 " }}}
 
 " General {{{
