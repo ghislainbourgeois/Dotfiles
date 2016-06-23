@@ -16,8 +16,14 @@ if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
     Plugin 'pearofducks/ansible-vim'
 
     Plugin 'fholgado/minibufexpl.vim'
+    
+    Plugin 'scrooloose/nerdtree'
 
     Plugin 'solarized'
+
+    Plugin 'nvie/vim-flake8'
+
+    Plugin 'jgdavey/tslime.vim'
 
     call vundle#end()
 endif
@@ -34,6 +40,9 @@ colorscheme solarized
 " Terminal {{{
 set title                       	" update terminal title
 set ttyfast                     	" fast terminal
+if exists('$TMUX')
+    set term=screen-256color
+endif
 " }}}
 
 " General {{{
@@ -100,6 +109,7 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+nnoremap <C-n> :NERDTreeToggle<CR>
 " }}}
 
 " FileTypes {{{

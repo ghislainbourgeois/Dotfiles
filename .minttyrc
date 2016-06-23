@@ -1,0 +1,9 @@
+BoldAsFont=yes
+BoldAsColour=yes
+Term=xterm-256color
+FontHeight=12
+Scrollbar=none
+Transparency=off
+OpaqueWhenFocused=no
+FontSmoothing=full
+BellType=0
