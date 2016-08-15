@@ -25,6 +25,8 @@ if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
 
     Plugin 'jgdavey/tslime.vim'
 
+    Plugin 'editorconfig/editorconfig-vim'
+
     call vundle#end()
 endif
 
@@ -60,7 +62,7 @@ set showmatch                   	" show matching brackets
 set statusline=%<%F\ %h%m%r%=%-14.(%l,%c%V%)\ %P        " Status line format
 set laststatus=2                	" always show status line
 set visualbell                  	" use visual bell
-set nowrap
+set wrap
 set whichwrap=b,s,h,l,<,>,[,]   	" moves span line wraps
 set wildmenu  "Visual autocomplete for command menu
 set lazyredraw  "redraw only when needed
@@ -69,10 +71,10 @@ set lazyredraw  "redraw only when needed
 " Spaces & Tabs {{{
 set tabstop=4                   	" tabs are 4 spaces wide
 set shiftwidth=4                	" number of spaces for indentation
-"set textwidth=78                    " Max line width
+set textwidth=79                    " Max line width
 set expandtab						" Replace tab with spaces
 set autoindent
-
+set formatoptions=qrn1              " see :h fo-table
 " }}}
 
 " Searching {{{
