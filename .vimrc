@@ -27,6 +27,8 @@ if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
 
     Plugin 'editorconfig/editorconfig-vim'
 
+    Plugin 'christoomey/vim-tmux-navigator'
+
     call vundle#end()
 endif
 
