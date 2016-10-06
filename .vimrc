@@ -1,36 +1,58 @@
 "Ghislain's vimrc
 
-" Vundle {{{
 set nocompatible
+" Vundle {{{
 filetype off
 
-if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
-
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
-
-    Plugin 'VundleVim/Vundle.vim'
-
-    Plugin 'tpope/vim-fugitive'
-
-    Plugin 'pearofducks/ansible-vim'
-
-    Plugin 'fholgado/minibufexpl.vim'
-    
-    Plugin 'scrooloose/nerdtree'
-
-    Plugin 'solarized'
-
-    Plugin 'nvie/vim-flake8'
-
-    Plugin 'jgdavey/tslime.vim'
-
-    Plugin 'editorconfig/editorconfig-vim'
-
-    Plugin 'christoomey/vim-tmux-navigator'
-
-    call vundle#end()
+if has("win32unix")
+    let g:os = "Cygwin"
+elseif has("win32") || has("win64")
+    let g:os = "Windows"
+else
+    let g:os = "Unix"
 endif
+
+if g:os == "Windows"
+    let g:vundledir = '%HOME%/vimfiles/bundle/Vundle.vim/'
+    let g:bundledir = '%USERPROFILE%/vimfiles/bundle/'
+else
+    let g:vundledir = '~/.vim/bundle/Vundle.vim'
+    let g:bundledir = '~/.vim/bundle'
+endif
+
+if g:os == "Windows"
+    execute 'set rtp+=' . expand('%HOME%/vimfiles/bundle/Vundle.vim/')
+else
+    set rtp+=~/.vim/bundle/Vundle.vim
+endif
+
+call vundle#begin(g:bundledir)
+
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'pearofducks/ansible-vim'
+
+Plugin 'fholgado/minibufexpl.vim'
+
+Plugin 'scrooloose/nerdtree'
+
+Plugin 'solarized'
+
+Plugin 'nvie/vim-flake8'
+
+Plugin 'christoomey/vim-tmux-navigator'
+
+Plugin 'jgdavey/tslime.vim'
+
+Plugin 'editorconfig/editorconfig-vim'
+
+Plugin 'crusoexia/vim-monokai'
+
+Plugin 'vim-airline'
+
+call vundle#end()
 
 filetype on
 " }}}
@@ -38,7 +60,7 @@ filetype on
 " Colors {{{
 set background=dark             	" set color scheme for dark backgrounds
 set t_Co=256
-colorscheme solarized
+colorscheme monokai
 " }}}
 
 " Terminal {{{
