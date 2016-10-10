@@ -38,8 +38,6 @@ Plugin 'fholgado/minibufexpl.vim'
 
 Plugin 'scrooloose/nerdtree'
 
-Plugin 'solarized'
-
 Plugin 'nvie/vim-flake8'
 
 Plugin 'christoomey/vim-tmux-navigator'
@@ -59,7 +57,6 @@ filetype on
 
 " Colors {{{
 set background=dark             	" set color scheme for dark backgrounds
-set t_Co=256
 colorscheme monokai
 " }}}
 
