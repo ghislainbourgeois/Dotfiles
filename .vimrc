@@ -19,15 +19,13 @@ if isdirectory(expand('~/.vim/bundle/Vundle.vim'))
     
     Plugin 'scrooloose/nerdtree'
 
-    Plugin 'solarized'
-
     Plugin 'nvie/vim-flake8'
 
     Plugin 'jgdavey/tslime.vim'
 
     Plugin 'vim-airline'
 
-    Plugin 'monokai'
+    Plugin 'crusoexia/vim-monokai'
 
     call vundle#end()
 endif
@@ -37,7 +35,6 @@ filetype on
 
 " Colors {{{
 set background=dark             	" set color scheme for dark backgrounds
-set t_Co=256
 colorscheme monokai
 " }}}
 
