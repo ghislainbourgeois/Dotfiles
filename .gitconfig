@@ -1,7 +1,5 @@
-[http]
-	proxy = http://fastweb.on.bell.ca:80
 [user]
 	name = Ghislain Bourgeois
-	email = ghislain.bourgeois@bell.ca
+	email = ghislain.bourgeois@gmail.com
 [push]
 	default = simple
