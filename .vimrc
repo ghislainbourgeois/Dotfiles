@@ -85,8 +85,8 @@ set laststatus=2                	" always show status line
 set visualbell                  	" use visual bell
 set wrap
 set whichwrap=b,s,h,l,<,>,[,]   	" moves span line wraps
-set wildmenu  "Visual autocomplete for command menu
-set lazyredraw  "redraw only when needed
+set wildmenu                        " Visual autocomplete for command menu
+set lazyredraw                      " redraw only when needed
 " }}}
 
 " Spaces & Tabs {{{
@@ -117,10 +117,10 @@ nnoremap <space> za
 " Keyboard mappings {{{
 let mapleader=","
 
-nnoremap <left> <nop> 
-nnoremap <right> <nop> 
-nnoremap <up> <nop> 
-nnoremap <down> <nop> 
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
 
 " Move vertically by visual line
 nnoremap j gj
