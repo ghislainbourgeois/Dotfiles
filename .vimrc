@@ -37,6 +37,8 @@ Plugin 'pearofducks/ansible-vim'
 Plugin 'fholgado/minibufexpl.vim'
 
 Plugin 'scrooloose/nerdtree'
+let g:NERDTreeHijackNetrw=1
+let g:NERDTreeShowHidden=1
 
 Plugin 'nvie/vim-flake8'
 
@@ -49,6 +51,11 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'crusoexia/vim-monokai'
 
 Plugin 'vim-airline'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+
+Plugin 'tmhedberg/SimpylFold'
+let g:SimpylFold_docstring_preview=1
 
 call vundle#end()
 
@@ -74,6 +81,7 @@ set nocompatible                	" use vim defaults
 set encoding=utf-8
 set fsync                       	" force disk sync when saving
 set showcmd
+set path+=**
 " }}}
 
 " UI Layout {{{
@@ -140,23 +148,44 @@ filetype plugin indent on			" syntax based indenting
 syntax on                       	" syntax highlighting
 
 if has("autocmd")
-    " Helpfiles
-    autocmd FileType helpfile set nonumber      " no line numbers when viewing help
-    autocmd FileType helpfile nnoremap <buffer><cr> <c-]>   " Enter selects subject
-    autocmd FileType helpfile nnoremap <buffer><bs> <c-T>   " Backspace to go back
+    augroup helpfile
+        autocmd!
+        autocmd FileType helpfile set nonumber      " no line numbers when viewing help
+        autocmd FileType helpfile nnoremap <buffer><cr> <c-]>   " Enter selects subject
+        autocmd FileType helpfile nnoremap <buffer><bs> <c-T>   " Backspace to go back
+    augroup END
 
-    " Vim files
-    autocmd FileType vim set omnifunc=vim
+    augroup vimfile
+        autocmd!
+        autocmd FileType vim set omnifunc=vim
+    augroup END
 
-    " Shell files
-    autocmd FileType sh set omnifunc=sh
+    augroup shellfile
+        autocmd!
+        autocmd FileType sh set omnifunc=sh
+    augroup END
 
-    " YAML files
-    autocmd FileType yaml setl indentkeys-=<:>
+    augroup ansible
+        autocmd!
+        autocmd FileType yaml setlocal indentkeys-=<:>
+    augroup END
+
+    augroup pythonfile
+        autocmd!
+        autocmd BufNewFile,BufRead *.py setlocal tabstop=4
+        autocmd BufNewFile,BufRead *.py setlocal softtabstop=4
+        autocmd BufNewFile,BufRead *.py setlocal shiftwidth=4
+        autocmd BufNewFile,BufRead *.py setlocal textwidth=79
+        autocmd BufNewFile,BufRead *.py setlocal expandtab
+        autocmd BufNewFile,BufRead *.py setlocal autoindent
+        autocmd BufNewFile,BufRead *.py setlocal fileformat=unix
+        autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum)
+        autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+    augroup END
+
 endif
 " }}}
 
 runtime! ftplugin/man.vim
-
 
 " vim:foldmethod=marker:foldlevel=0
