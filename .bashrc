@@ -16,8 +16,10 @@ fi
 
 if [ -e /opt/vim8/bin/vim ]
 then
-    export PATH=/opt/vim8/bin:$PATH
+    export PATH=/home/ghibourg/bin:$PATH
 fi
+
+export CDPATH=".:~:~/Projects"
 
 # Set history
 export HISTSIZE=5000
