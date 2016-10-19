@@ -1,7 +1,7 @@
 "Ghislain's vimrc
 
 set nocompatible
-" Vundle {{{
+" VIM-Plug {{{
 filetype off
 
 if has("win32unix")
@@ -13,51 +13,43 @@ else
 endif
 
 if g:os == "Windows"
-    let g:vundledir = '%HOME%/vimfiles/bundle/Vundle.vim/'
-    let g:bundledir = '%USERPROFILE%/vimfiles/bundle/'
+    let g:pluggeddir = '%USERPROFILE%/vimfiles/plugged/'
 else
-    let g:vundledir = '~/.vim/bundle/Vundle.vim'
-    let g:bundledir = '~/.vim/bundle'
+    let g:pluggeddir = '~/.vim/plugged'
 endif
 
-if g:os == "Windows"
-    execute 'set rtp+=' . expand('%HOME%/vimfiles/bundle/Vundle.vim/')
-else
-    set rtp+=~/.vim/bundle/Vundle.vim
-endif
+call plug#begin(g:pluggeddir)
 
-call vundle#begin(g:bundledir)
+Plug 'tpope/vim-fugitive'
 
-Plugin 'VundleVim/Vundle.vim'
+Plug 'pearofducks/ansible-vim'
 
-Plugin 'tpope/vim-fugitive'
+Plug 'fholgado/minibufexpl.vim'
 
-Plugin 'pearofducks/ansible-vim'
-
-Plugin 'fholgado/minibufexpl.vim'
-
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 let g:NERDTreeHijackNetrw=1
 let g:NERDTreeShowHidden=1
 
-Plugin 'nvie/vim-flake8'
+Plug 'nvie/vim-flake8'
 
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 
-Plugin 'jgdavey/tslime.vim'
+Plug 'jgdavey/tslime.vim'
 
-Plugin 'editorconfig/editorconfig-vim'
+Plug 'editorconfig/editorconfig-vim'
 
-Plugin 'crusoexia/vim-monokai'
+Plug 'crusoexia/vim-monokai'
 
-Plugin 'vim-airline'
+Plug 'vim-airline'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 
-Plugin 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold'
 let g:SimpylFold_docstring_preview=1
 
-call vundle#end()
+Plug 'scrooloose/syntastic'
+
+call plug#end()
 
 filetype on
 " }}}
