@@ -1,6 +1,7 @@
 "Ghislain's vimrc
 
 set nocompatible
+
 " VIM-Plug {{{
 filetype off
 
@@ -26,11 +27,9 @@ Plug 'pearofducks/ansible-vim'
 
 Plug 'fholgado/minibufexpl.vim'
 
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 let g:NERDTreeHijackNetrw=1
 let g:NERDTreeShowHidden=1
-
-Plug 'nvie/vim-flake8'
 
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -44,10 +43,12 @@ Plug 'vim-airline'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 
+Plug 'nvie/vim-flake8'
+
 Plug 'tmhedberg/SimpylFold'
 let g:SimpylFold_docstring_preview=1
 
-Plug 'scrooloose/syntastic'
+Plug 'neomake/neomake'
 
 call plug#end()
 
