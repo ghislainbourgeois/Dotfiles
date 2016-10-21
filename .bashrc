@@ -14,10 +14,7 @@ if [[ ${BASH_VERSION%%.*} -ge 2 ]]; then
     fi
 fi
 
-if [ -e /opt/vim8/bin/vim ]
-then
-    export PATH=/home/ghibourg/bin:$PATH
-fi
+export PATH=/home/ghibourg/bin:$PATH
 
 export CDPATH=".:~:~/Projects"
 
