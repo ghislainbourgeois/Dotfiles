@@ -14,7 +14,7 @@ if [[ ${BASH_VERSION%%.*} -ge 2 ]]; then
     fi
 fi
 
-export PATH=/home/ghibourg/bin:$PATH
+export PATH=~/bin:$PATH
 
 export CDPATH=".:~:~/Projects"
 
