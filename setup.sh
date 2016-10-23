@@ -7,4 +7,5 @@ ln -sf ~/Dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/Dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/Dotfiles/.minttyrc ~/.minttyrc
 ln -sf ~/Dotfiles/.i3 ~/.i3
+ln -sf ~/Dotfiles/.Xresources ~/.Xresources
  
