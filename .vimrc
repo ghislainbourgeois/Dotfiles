@@ -142,6 +142,11 @@ filetype plugin indent on			" syntax based indenting
 syntax on                       	" syntax highlighting
 
 if has("autocmd")
+    augroup ansible
+        autocmd!
+        autocmd FileType yaml setlocal indentkeys-=<:>
+    augroup END
+
     augroup helpfile
         autocmd!
         autocmd FileType helpfile set nonumber      " no line numbers when viewing help
@@ -149,20 +154,14 @@ if has("autocmd")
         autocmd FileType helpfile nnoremap <buffer><bs> <c-T>   " Backspace to go back
     augroup END
 
-    augroup vimfile
+    augroup javascript
         autocmd!
-        autocmd FileType vim set omnifunc=vim
+        autocmd BufWritePost,BufRead * Neomake
     augroup END
 
-    augroup shellfile
+    augroup neomake
         autocmd!
-        autocmd FileType sh set omnifunc=sh
-    augroup END
-
-    augroup ansible
-        autocmd!
-        autocmd FileType yaml setlocal indentkeys-=<:>
-    augroup END
+        autocmd BufWritePost * Neomake
 
     augroup pythonfile
         autocmd!
@@ -175,6 +174,17 @@ if has("autocmd")
         autocmd BufNewFile,BufRead *.py setlocal fileformat=unix
         autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum)
         autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+        autocmd BufWritePost,BufRead * Neomake
+    augroup END
+
+    augroup shellfile
+        autocmd!
+        autocmd FileType sh set omnifunc=sh
+    augroup END
+
+    augroup vimfile
+        autocmd!
+        autocmd FileType vim set omnifunc=vim
     augroup END
 
 endif
