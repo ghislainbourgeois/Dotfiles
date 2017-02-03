@@ -44,12 +44,16 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='badwolf'
 
-Plug 'nvie/vim-flake8'
+Plug 'nvie/vim-flake8', { 'for': 'python' }
 
 Plug 'tmhedberg/SimpylFold'
 let g:SimpylFold_docstring_preview=1
 
 Plug 'neomake/neomake'
+
+Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
 call plug#end()
 
