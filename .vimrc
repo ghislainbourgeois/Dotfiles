@@ -93,6 +93,7 @@ set lazyredraw                      " redraw only when needed
 
 " Spaces & Tabs {{{
 set tabstop=4                   	" tabs are 4 spaces wide
+set softtabstop=4                   	" tabs are 4 spaces wide
 set shiftwidth=4                	" number of spaces for indentation
 set textwidth=79                    " Max line width
 set expandtab						" Replace tab with spaces
@@ -165,12 +166,6 @@ if has("autocmd")
 
     augroup pythonfile
         autocmd!
-        autocmd BufNewFile,BufRead *.py setlocal tabstop=4
-        autocmd BufNewFile,BufRead *.py setlocal softtabstop=4
-        autocmd BufNewFile,BufRead *.py setlocal shiftwidth=4
-        autocmd BufNewFile,BufRead *.py setlocal textwidth=79
-        autocmd BufNewFile,BufRead *.py setlocal expandtab
-        autocmd BufNewFile,BufRead *.py setlocal autoindent
         autocmd BufNewFile,BufRead *.py setlocal fileformat=unix
         autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum)
         autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
