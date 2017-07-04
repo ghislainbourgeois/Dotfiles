@@ -170,6 +170,7 @@ if has("autocmd")
     augroup neomake
         autocmd!
         autocmd BufWritePost * Neomake
+    augroup END
 
     augroup pythonfile
         autocmd!
