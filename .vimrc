@@ -150,6 +150,9 @@ if has("autocmd")
     augroup ansible
         autocmd!
         autocmd FileType yaml setlocal indentkeys-=<:>
+        autocmd FileType yaml setlocal tabstop=2
+        autocmd FileType yaml setlocal softtabstop=2
+        autocmd FileType yaml setlocal shiftwidth=2
     augroup END
 
     augroup helpfile
