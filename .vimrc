@@ -155,6 +155,12 @@ if has("autocmd")
         autocmd FileType yaml setlocal shiftwidth=2
     augroup END
 
+    augroup golang
+        autocmd!
+        autocmd BufNewFile,BufRead *.go setlocal fileformat=unix
+        autocmd BufWritePost,BufRead * Neomake
+    augroup END
+
     augroup helpfile
         autocmd!
         autocmd FileType helpfile set nonumber      " no line numbers when viewing help
