@@ -16,7 +16,9 @@ fi
 
 export PATH=~/bin:$PATH
 
-export CDPATH=".:~:~/Projects"
+export CDPATH=.:~:~/Projects
+
+export GOPATH=~/Projects/go
 
 # Set history
 export HISTSIZE=5000
