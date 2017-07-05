@@ -39,7 +39,7 @@ Plug 'editorconfig/editorconfig-vim'
 
 Plug 'crusoexia/vim-monokai'
 
-Plug 'vim-airline'
+Plug 'vim-airline/vim-airline'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='badwolf'
@@ -54,6 +54,10 @@ Plug 'neomake/neomake'
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+
+Plug 'fatih/vim-go', { 'for': 'go' }
+
+Plug 'gisraptor/vim-lilypond-integrator'
 
 call plug#end()
 
