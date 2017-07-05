@@ -178,6 +178,13 @@ if has("autocmd")
         autocmd BufWritePost,BufRead * Neomake
     augroup END
 
+    augroup lilypond
+        autocmd!
+        autocmd FileType lilypond setlocal tabstop=2
+        autocmd FileType lilypond setlocal softtabstop=2
+        autocmd FileType lilypond setlocal shiftwidth=2
+    augroup END
+
     augroup neomake
         autocmd!
         autocmd BufWritePost * Neomake
