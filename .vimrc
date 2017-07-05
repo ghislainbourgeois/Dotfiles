@@ -40,6 +40,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'crusoexia/vim-monokai'
 
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='badwolf'
