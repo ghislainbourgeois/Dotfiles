@@ -51,6 +51,10 @@ Plug 'tmhedberg/SimpylFold'
 let g:SimpylFold_docstring_preview=1
 
 Plug 'neomake/neomake'
+let g:neomake_lilypond_lilypond_maker = {
+    \ 'errorformat': '%f:%l:%v: error: %m',
+    \ }
+let g:neomake_lilypond_enabled_makers = ['lilypond']
 
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 
