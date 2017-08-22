@@ -40,5 +40,27 @@ URxvt*color15:      #D0D0D0
 
 URxvt.shading: 10
 URxvt.cursorBlink: true
-URxvt.font: xft:inconsolata:size=18:antialias=true
-URxvt.boldFont: xft:inconsolata:bold:size=18:antialias=true
+URxvt.font: xft:inconsolata:size=12:antialias=true
+URxvt.boldFont: xft:inconsolata:bold:size=12:antialias=true
+
+Rxvt.background:   #0C1C1C
+
+Rxvt*foreground:   #D0D0D0
+Rxvt*cursorColor:  #FFFFFF
+
+Rxvt*color0:       #1C1C1C
+Rxvt*color1:       #E1321A
+Rxvt*color2:       #6AB017
+Rxvt*color3:       #FFC005
+Rxvt*color4:       #004F9E
+Rxvt*color5:       #EC0048
+Rxvt*color6:       #2AA7E7
+Rxvt*color7:       #F2F2F2
+Rxvt*color8:       #5D5D5D
+Rxvt*color9:       #FF361E
+Rxvt*color10:      #7BC91F
+Rxvt*color11:      #FFD00A
+Rxvt*color12:      #0071FF
+Rxvt*color13:      #FF1D62
+Rxvt*color14:      #4BB8FD
+Rxvt*color15:      #D0D0D0
