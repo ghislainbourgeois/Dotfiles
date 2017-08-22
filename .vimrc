@@ -66,16 +66,19 @@ filetype on
 " }}}
 
 " Colors {{{
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark             	" set color scheme for dark backgrounds
+set termguicolors
 colorscheme monokai
 " }}}
 
 " Terminal {{{
 set title                       	" update terminal title
 set ttyfast                     	" fast terminal
-if exists('$TMUX')
-    set term=screen-256color
-endif
+"if exists('$TMUX')
+"    set term=screen-256color
+"endif
 " }}}
 
 " General {{{
