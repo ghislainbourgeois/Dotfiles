@@ -27,10 +27,6 @@ Plug 'pearofducks/ansible-vim'
 
 Plug 'fholgado/minibufexpl.vim'
 
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-let g:NERDTreeHijackNetrw=1
-let g:NERDTreeShowHidden=1
-
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'jgdavey/tslime.vim'
@@ -150,8 +146,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
-nnoremap <C-n> :NERDTreeToggle<CR>
 " }}}
 
 " FileTypes {{{
