@@ -30,6 +30,8 @@ Plug 'fholgado/minibufexpl.vim'
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'jgdavey/tslime.vim'
+let g:tslime_always_current_session = 1
+let g:tslime_always_current_windows = 1
 
 Plug 'editorconfig/editorconfig-vim'
 
@@ -126,11 +128,10 @@ set foldenable
 set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=marker
-nnoremap <space> za
 " }}}
 
 " Keyboard mappings {{{
-let mapleader=","
+let mapleader=" "
 
 nnoremap <left> <nop>
 nnoremap <right> <nop>
@@ -146,6 +147,13 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+" Tslime
+vmap <C-c><C-c> <Plug>SendSelectionToTmux
+nmap <C-c><C-c> <Plug>NormalModeSendToTmux
+nmap <C-c>r <Plug>SetTmuxVars
+nmap <C-c><C-l> maggVG<C-c><C-c>`a
+nmap <leader>ms :Tmux mit-scheme<CR>
 " }}}
 
 " FileTypes {{{
