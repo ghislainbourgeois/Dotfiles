@@ -27,6 +27,8 @@ export HISTTIMEFORMAT="%F %T "
 export HISTCONTROL=ignoredups
 export PROMPT_COMMAND="history -a" # Appends immediately to history
 
+which brew >/dev/null && source $(brew --prefix)/etc/bash_completion
+
 if [[ x$TERM = xdumb ]] ; then
 export PS1="\W $"
 else
