@@ -169,6 +169,10 @@ if has("autocmd")
         autocmd FileType yaml setlocal shiftwidth=2
     augroup END
 
+    augroup git
+        autocmd Filetype gitcommit setlocal spell textwidth=72
+    augroup END
+
     augroup golang
         autocmd!
         autocmd BufNewFile,BufRead *.go setlocal fileformat=unix
