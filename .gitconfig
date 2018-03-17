@@ -3,3 +3,7 @@
 	email = ghislain.bourgeois@gmail.com
 [push]
 	default = simple
+[diff]
+	tool = vimdiff
+[fetch]
+	recurseSubmodules = true
