@@ -83,6 +83,15 @@ set ttyfast                     	" fast terminal
 "endif
 " }}}
 
+" NetRW {{{
+let g:netrw_banner = 0
+let g:netrw_browse_split = 4
+let g:netrw_cursor = 2
+let g:netrw_fastbrowse = 0
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 25
+" }}}
+
 " General {{{
 set modelines=1
 set nocompatible                	" use vim defaults
