@@ -186,6 +186,7 @@ if has("autocmd")
         autocmd!
         autocmd BufNewFile,BufRead *.go setlocal fileformat=unix
         autocmd BufWritePost,BufRead * Neomake
+        autocmd FileType go nnoremap <leader>t :GoTest<cr>
     augroup END
 
     augroup helpfile
