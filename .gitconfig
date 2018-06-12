@@ -1,9 +1,17 @@
 [user]
-	name = Ghislain Bourgeois
-	email = ghislain.bourgeois@gmail.com
+    name = Ghislain Bourgeois
+    email = ghislain.bourgeois@gmail.com
 [push]
-	default = simple
+    default = simple
 [diff]
-	tool = vimdiff
+    tool = vimdiff
+[difftool]
+    prompt = false
 [fetch]
-	recurseSubmodules = true
+    recurseSubmodules = true
+[merge]
+    tool = vimdiff
+[mergetool]
+    prompt = false
+[alias]
+    pm = !"git checkout master && git pull && git checkout -"
