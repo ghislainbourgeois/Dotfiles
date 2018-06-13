@@ -184,6 +184,7 @@ if has("autocmd")
         autocmd!
         autocmd FileType beancount let b:beancount_root = fnamemodify(findfile("ledger.beancount", ";"), ":p")
         autocmd FileType beancount let &l:makeprg = "bean-check ".b:beancount_root
+        autocmd BufWritePost *.beancount unlet! b:beancount_loaded | call beancount#load_everything()
     augroup END
 
     augroup git
