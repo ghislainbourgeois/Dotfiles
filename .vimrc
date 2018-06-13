@@ -200,7 +200,7 @@ if has("autocmd")
 
     augroup helpfile
         autocmd!
-        autocmd FileType helpfile set nonumber      " no line numbers when viewing help
+        autocmd FileType helpfile setlocal nonumber      " no line numbers when viewing help
         autocmd FileType helpfile nnoremap <buffer><cr> <c-]>   " Enter selects subject
         autocmd FileType helpfile nnoremap <buffer><bs> <c-T>   " Backspace to go back
     augroup END
@@ -232,12 +232,12 @@ if has("autocmd")
 
     augroup shellfile
         autocmd!
-        autocmd FileType sh set omnifunc=sh
+        autocmd FileType sh setlocal omnifunc=sh
     augroup END
 
     augroup vimfile
         autocmd!
-        autocmd FileType vim set omnifunc=vim
+        autocmd FileType vim setlocal omnifunc=vim
     augroup END
 
 endif
