@@ -181,6 +181,12 @@ if has("autocmd")
         autocmd FileType yaml setlocal keywordprg=ansible-doc
     augroup END
 
+    augroup beancount
+        autocmd!
+        autocmd FileType beancount let b:beancount_root = findfile("ledger.beancount", ";")
+        autocmd FileType beancount execute "setlocal makeprg=bean-check\\ ".b:beancount_root
+    augroup END
+
     augroup git
         autocmd Filetype gitcommit setlocal spell textwidth=72
     augroup END
