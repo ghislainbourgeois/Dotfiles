@@ -138,7 +138,6 @@ set completeopt=menuone,longest
 set foldenable
 set foldlevelstart=10
 set foldnestmax=10
-set foldmethod=marker
 " }}}
 
 " Keyboard mappings {{{
@@ -238,6 +237,7 @@ if has("autocmd")
     augroup vimfile
         autocmd!
         autocmd FileType vim setlocal omnifunc=vim
+        autocmd FileType vim setlocal foldmethod=marker
     augroup END
 
 endif
