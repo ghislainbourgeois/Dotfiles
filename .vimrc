@@ -62,6 +62,8 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 
 Plug 'gisraptor/vim-lilypond-integrator'
 
+Plug 'nathangrigg/vim-beancount'
+
 call plug#end()
 
 filetype on
