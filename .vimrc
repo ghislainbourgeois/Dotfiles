@@ -195,14 +195,14 @@ if has("autocmd")
         autocmd!
         autocmd BufNewFile,BufRead *.go setlocal fileformat=unix
         autocmd BufWritePost,BufRead * Neomake
-        autocmd FileType go nnoremap <leader>t :GoTest<cr>
+        autocmd FileType go nnoremap <buffer> <leader>t :GoTest<cr>
     augroup END
 
     augroup helpfile
         autocmd!
         autocmd FileType helpfile setlocal nonumber      " no line numbers when viewing help
-        autocmd FileType helpfile nnoremap <buffer><cr> <c-]>   " Enter selects subject
-        autocmd FileType helpfile nnoremap <buffer><bs> <c-T>   " Backspace to go back
+        autocmd FileType helpfile nnoremap <buffer> <CR> <c-]>   " Enter selects subject
+        autocmd FileType helpfile nnoremap <buffer> <BS> <c-T>   " Backspace to go back
     augroup END
 
     augroup javascript
