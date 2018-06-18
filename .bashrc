@@ -50,24 +50,3 @@ if [ -e ~/.local_bashrc ]
 then
 source ~/.local_bashrc
 fi
-
-function su() {
-if [ $# -eq 0 ]
-then
-`which su` root -c "bash --rcfile ${HOME}/.bashrc"
-else
-`which su` "$@"
-fi
-}
-
-function send_key() {
-cat ~/.ssh/id_rsa.pub | ssh $1 'mkdir -p ~/.ssh; cat - >> ~/.ssh/authorized_keys; chmod 700 ~/.ssh; chmod 600 ~/.ssh/authorized_keys'
-}
-
-function send_dotfiles() {
-    scp ~/.bashrc $1:~/.bashrc
-    scp ~/.vimrc $1:~/.vimrc
-    scp ~/.screenrc $1:~/.screenrc
-    scp ~/.tmux.conf $1:~/.tmux.conf
-    scp ~/.ssh/config $1:~/.ssh/config
-}
