@@ -28,13 +28,13 @@ export PROMPT_COMMAND="history -a" # Appends immediately to history
 which brew >/dev/null && source $(brew --prefix)/etc/bash_completion
 
 if [[ x$TERM = xdumb ]] ; then
-export PS1="\W $"
+    export PS1="\W $"
 else
-if [[ ${EUID} == 0 ]] ; then
-export PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
-else
-export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
-fi
+    if [[ ${EUID} == 0 ]] ; then
+        export PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
+    else
+        export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+    fi
 fi
 
 alias vi='vim'
@@ -46,5 +46,5 @@ export EDITOR=vim
 
 if [ -e ~/.local_bashrc ]
 then
-source ~/.local_bashrc
+    source ~/.local_bashrc
 fi
