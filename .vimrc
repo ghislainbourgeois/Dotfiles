@@ -189,6 +189,7 @@ if has("autocmd")
 
     augroup git
         autocmd Filetype gitcommit setlocal spell textwidth=72
+        autocmd Filetype gitconfig setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
     augroup END
 
     augroup golang

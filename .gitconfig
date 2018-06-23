@@ -1,17 +1,22 @@
 [user]
-    name = Ghislain Bourgeois
-    email = ghislain.bourgeois@gmail.com
+	name = Ghislain Bourgeois
+	email = ghislain.bourgeois@gmail.com
+	signingKey = 4B81C0DD0261DB75A314030B31D3C13CB697DB2D
 [push]
-    default = simple
+	default = simple
 [diff]
-    tool = vimdiff
+	tool = vimdiff
 [difftool]
-    prompt = false
+	prompt = false
 [fetch]
-    recurseSubmodules = true
+	recurseSubmodules = true
 [merge]
-    tool = vimdiff
+	tool = vimdiff
 [mergetool]
-    prompt = false
+	prompt = false
 [alias]
-    pm = !"git checkout master && git pull && git checkout -"
+	pm = !"git checkout master && git pull && git checkout -"
+[tag]
+	forceSignAnnotated = true
+[commit]
+	gpgSign = true
