@@ -25,16 +25,13 @@ export HISTTIMEFORMAT="%F %T "
 export HISTCONTROL=ignoredups
 export PROMPT_COMMAND="history -a" # Appends immediately to history
 
-which brew >/dev/null && source $(brew --prefix)/etc/bash_completion
-
 if [[ x$TERM = xdumb ]] ; then
     export PS1="\W $"
 else
-    if [[ ${EUID} == 0 ]] ; then
-        export PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
-    else
-        export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
-    fi
+    green="\001$(tput setaf 2)\002"
+    blue="\001$(tput setaf 4)\002"
+    reset="\001$(tput sgr0)\002"
+    export PS1="${green}\w ${blue}\$ ${reset}"
 fi
 
 alias vi='vim'
@@ -43,6 +40,11 @@ alias fixwrap='kill -WINCH $$'
 alias bashref='links /usr/share/doc/bash/html/bashref.html'
 
 export EDITOR=vim
+
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
 
 if [ -e ~/.local_bashrc ]
 then
