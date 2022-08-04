@@ -31,7 +31,7 @@ else
     green="\001$(tput setaf 2)\002"
     blue="\001$(tput setaf 4)\002"
     reset="\001$(tput sgr0)\002"
-    export PS1="${green}\w ${blue}\$ ${reset}"
+    export PS1="${reset}${green}\w ${blue}\$ ${reset}"
 fi
 
 alias vi='vim'
