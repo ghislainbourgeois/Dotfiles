@@ -36,14 +36,18 @@ let g:tslime_always_current_windows = 1
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'crusoexia/vim-monokai'
+Plug 'morhetz/gruvbox'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_theme='badwolf'
+let g:airline_theme='base16_gruvbox_dark_hard'
 
 Plug 'nvie/vim-flake8', { 'for': 'python' }
+Plug 'psf/black', { 'branch': 'stable' }
+let g:black_venv="~/.venv_tools"
+let g:black_linelength=99
 
 Plug 'tmhedberg/SimpylFold'
 let g:SimpylFold_docstring_preview=1
@@ -66,6 +70,8 @@ Plug 'nathangrigg/vim-beancount'
 
 call plug#end()
 
+call neomake#configure#automake('nrwi', 500)
+
 filetype on
 " }}}
 
@@ -74,7 +80,7 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark             	" set color scheme for dark backgrounds
 set termguicolors
-colorscheme monokai
+colorscheme gruvbox
 " }}}
 
 " Terminal {{{
@@ -142,11 +148,6 @@ set foldnestmax=10
 
 " Keyboard mappings {{{
 let mapleader=" "
-
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-nnoremap <up> <nop>
-nnoremap <down> <nop>
 
 " Move vertically by visual line
 nnoremap j gj
@@ -228,6 +229,7 @@ if has("autocmd")
         autocmd BufNewFile,BufRead *.py setlocal fileformat=unix
         autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum)
         autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+        autocmd BufWritePre *.py Black
         autocmd BufWritePost,BufRead * Neomake
     augroup END
 
