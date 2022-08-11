@@ -14,3 +14,5 @@ ln -sf ~/Dotfiles/init.el ~/.emacs.d/init.el
 mkdir -p ~/.config/qtile
 ln -sf ~/Dotfiles/qtile/config.py ~/.config/qtile/config.py
 ln -sf ~/Dotfiles/qtile/autostart.sh ~/.config/qtile/autostart.sh
+ln -sf ~/Dotfiles/alacritty.yml ~/.config/alacritty/alacritty.yml
+
