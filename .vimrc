@@ -44,10 +44,11 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='base16_gruvbox_dark_hard'
 
-Plug 'nvie/vim-flake8', { 'for': 'python' }
 Plug 'psf/black', { 'branch': 'stable' }
 let g:black_venv="~/.venv_tools"
 let g:black_linelength=99
+
+Plug 'timothycrosley/isort'
 
 Plug 'tmhedberg/SimpylFold'
 let g:SimpylFold_docstring_preview=1
@@ -57,6 +58,9 @@ let g:neomake_lilypond_lilypond_maker = {
     \ 'errorformat': '%f:%l:%v: error: %m',
     \ }
 let g:neomake_lilypond_enabled_makers = ['lilypond']
+let g:neomake_python_flake8_maker = {
+    \ 'args': ['--max-line-length', '120'],
+    \ }
 
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 
@@ -242,6 +246,12 @@ if has("autocmd")
         autocmd!
         autocmd FileType vim setlocal omnifunc=vim
         autocmd FileType vim setlocal foldmethod=marker
+    augroup END
+
+    augroup colorscheme
+        autocmd BufWinEnter,SourcePost * highlight Normal     ctermbg=NONE guibg=NONE
+                    \ |    highlight LineNr     ctermbg=NONE guibg=NONE
+                    \ |    highlight SignColumn ctermbg=NONE guibg=NONE
     augroup END
 
 endif

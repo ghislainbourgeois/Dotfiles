@@ -31,7 +31,7 @@ else
     green="\001$(tput setaf 2)\002"
     blue="\001$(tput setaf 4)\002"
     reset="\001$(tput sgr0)\002"
-    export PS1="${reset}${green}\w ${blue}\$ ${reset}"
+    export PS1="${reset}${green}\w\n${blue}\$ ${reset}"
 fi
 
 alias vi='vim'
@@ -50,3 +50,7 @@ if [ -e ~/.local_bashrc ]
 then
     source ~/.local_bashrc
 fi
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

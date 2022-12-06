@@ -1,18 +1,41 @@
-import os
 import subprocess
+import os
 
 from libqtile import bar, hook, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.widget import backlight
+from libqtile.config import Click, Drag, DropDown, Group, Key, Match, Screen, ScratchPad
 from libqtile.lazy import lazy
+from libqtile.log_utils import logger
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
 terminal = guess_terminal()
 
+gruvbox = {
+    "bg": "#282828",
+    "red": "#cc241d",
+    "green": "#98971a",
+    "yellow": "#d79921",
+    "blue": "#458588",
+    "purple": "#b16286",
+    "aqua": "#689d6a",
+    "gray": "#a89984",
+    "dark_gray": "#928374",
+    "bright_red": "#fb4934",
+    "bright_green": "#b8bb26",
+    "bright_yellow": "#fabd2f",
+    "bright_blue": "#83a598",
+    "bright_purple": "#d3869b",
+    "bright_aqua": "#8ec07c",
+    "fg": "#ebdbb2",
+}
+
+colors = gruvbox
+
 
 @lazy.function
 def lock(qtile):
-    subprocess.Popen("i3lock -i /home/ghislain/Pictures/Wallpapers/stairs.png -e", shell=True)
+    subprocess.Popen("i3lock -i /home/ghislain/Pictures/Wallpapers/board.png -e", shell=True)
 
 
 @lazy.function
@@ -56,88 +79,137 @@ keys = [
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "z", lazy.window.toggle_fullscreen()),
     Key([mod], "x", lock),
     Key([mod], "space", menu),
+    Key(
+        [],
+        "XF86MonBrightnessUp",
+        lazy.widget["backlight"].change_backlight(backlight.ChangeDirection.UP),
+    ),
+    Key(
+        [],
+        "XF86MonBrightnessDown",
+        lazy.widget["backlight"].change_backlight(backlight.ChangeDirection.DOWN),
+    ),
 ]
 
-groups = [Group(i) for i in "123456789"]
+groups = [Group(i) for i in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]]
 
-for i in groups:
+for i, group in enumerate(groups):
     keys.extend(
         [
             Key(
                 [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
+                str(i + 1),
+                lazy.group[group.name].toscreen(),
+                desc="Switch to group {}".format(group.name),
             ),
             Key(
                 [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(i.name),
+                str(i + 1),
+                lazy.window.togroup(group.name, switch_group=True),
+                desc="Switch to & move focused window to group {}".format(group.name),
             ),
         ]
     )
 
+groups.append(
+    ScratchPad(
+        "scratchpad",
+        [
+            DropDown("term", "alacritty", x=0.25, y=0.25, width=0.5, height=0.5, opacity=1),
+            DropDown("keepass", "keepassxc", x=0.25, y=0.25, width=0.5, height=0.5, opacity=1),
+            DropDown(
+                "cmus", "alacritty -e cmus", x=0.25, y=0.25, width=0.5, height=0.5, opacity=1
+            ),
+        ],
+    ),
+)
+
+keys.extend(
+    [
+        Key([mod, "shift"], "Return", lazy.group["scratchpad"].dropdown_toggle("term")),
+        Key([mod, "shift"], "p", lazy.group["scratchpad"].dropdown_toggle("keepass")),
+        Key([mod, "shift"], "m", lazy.group["scratchpad"].dropdown_toggle("cmus")),
+    ]
+)
+
 layouts = [
     layout.Columns(
-        border_focus="#b8bb26",
-        border_normal="#a89984",
-        border_focus_stack=["#98971a", "#b8bb26"],
+        border_focus=colors["bright_green"],
+        border_normal=colors["gray"],
+        border_focus_stack=[colors["green"], colors["bright_green"]],
         border_width=2,
         margin=6,
     ),
     layout.Max(
-        border_focus="#b8bb26",
-        border_normal="#a89984",
+        border_focus=colors["bright_green"],
+        border_normal=colors["gray"],
         border_width=2,
         margin=[6, 6, 6, 6],
     ),
 ]
 
 widget_defaults = dict(
-    font="mono",
-    fontsize=12,
-    foreground="#ebdbb2",
+    font="monospace",
+    fontsize=24,
+    foreground=colors["fg"],
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
 
+
+def top_bar():
+    return bar.Bar(
+        [
+            widget.GroupBox(
+                disable_drag=True,
+                fontsize=28,
+                highlight_method="block",
+                other_current_screen_border=colors["bright_blue"],
+                other_screen_border=colors["bright_blue"],
+                this_current_screen_border=colors["green"],
+                this_screen_border=colors["blue"],
+                inactive=colors["aqua"],
+                rounded=True,
+                urgent_border=colors["red"],
+            ),
+            widget.Chord(
+                chords_colors={
+                    "launch": ("#ff0000", "#ffffff"),
+                },
+                name_transform=lambda name: name.upper(),
+            ),
+            widget.Spacer(),
+            widget.TextBox(text="【", foreground=colors["bright_green"]),
+            widget.ThermalSensor(
+                tag_sensor="Package id 0", format="{temp:2.0f}ºC", update_interval=3
+            ),
+            widget.TextBox(text="】【", foreground=colors["bright_green"]),
+            widget.CPU(format="{freq_current:.1f}GHz {load_percent:2.0f}%", update_interval=3),
+            widget.TextBox(text="】【", foreground=colors["bright_green"]),
+            widget.Memory(measure_mem="G", update_interval=3),
+            widget.TextBox(text="】【", foreground=colors["bright_green"]),
+            widget.Backlight(backlight_name="intel_backlight"),
+            widget.TextBox(text="】【", foreground=colors["bright_green"]),
+            widget.Battery(low_foreground=colors["bright_red"]),
+            widget.TextBox(text="】【", foreground=colors["bright_green"]),
+            widget.Clock(format="%Y-%m-%d %a %H:%M"),
+            widget.TextBox(text="】", foreground=colors["bright_green"]),
+        ],
+        36,
+        background=colors["bg"] + "E0",
+        margin=[4, 6, 0, 6],
+    )
+
+
 screens = [
     Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.ThermalSensor(tag_sensor="Package id 0"),
-                widget.Sep(),
-                widget.CPU(),
-                widget.Sep(),
-                widget.Memory(measure_mem="G"),
-                widget.Sep(),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %H:%M"),
-                widget.QuickExit(
-                    default_text="[X]",
-                    countdown_format="[{}]",
-                    countdown_start=3,
-                    foreground="#cc241d",
-                ),
-            ],
-            24,
-            background="#282828",
-            margin=[0, 6, 0, 6],
-        ),
+        top=top_bar(),
+    ),
+    Screen(
+        top=top_bar(),
     ),
 ]
 
@@ -183,3 +255,13 @@ wmname = "LG3D"
 def autostart():
     home = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.Popen([home])
+
+
+@hook.subscribe.client_new
+def hook_client_new(c):
+    if "mattermost" in c.info()["wm_class"]:
+        c.togroup("9")
+    elif "thunderbird" in c.info()["wm_class"]:
+        c.togroup("8")
+    elif "qutebrowser" in c.info()["wm_class"]:
+        c.togroup("2")
