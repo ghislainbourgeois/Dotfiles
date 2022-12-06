@@ -16,4 +16,5 @@ ln -sf ~/Dotfiles/qtile/config.py ~/.config/qtile/config.py
 ln -sf ~/Dotfiles/qtile/autostart.sh ~/.config/qtile/autostart.sh
 mkdir -p ~/.config/alacritty
 ln -sf ~/Dotfiles/alacritty.yml ~/.config/alacritty/alacritty.yml
-
+mkdir -p ~/.config/pipewire/pipewire.conf.d
+ln -sf ~/Dotfiles/10-virtual-mic.conf ~/.config/pipewire/pipewire.conf.d/10-virtual-mic.conf
