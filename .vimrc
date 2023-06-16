@@ -21,6 +21,12 @@ endif
 
 call plug#begin(g:pluggeddir)
 
+Plug 'dense-analysis/ale'
+let g:ale_fixers = {
+    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \   'python': ['black', 'isort'],
+    \}
+
 Plug 'tpope/vim-fugitive'
 
 Plug 'pearofducks/ansible-vim'
