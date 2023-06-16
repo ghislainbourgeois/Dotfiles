@@ -35,7 +35,9 @@ colors = gruvbox
 
 @lazy.function
 def lock(qtile):
-    subprocess.Popen("i3lock -i /home/ghislain/Pictures/Wallpapers/board.png -e", shell=True)
+    subprocess.Popen(
+        "i3lock -i /home/ghislain/Pictures/wallpapers/seamless-2033661_640.png -e -t", shell=True
+    )
 
 
 @lazy.function
