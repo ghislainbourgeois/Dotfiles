@@ -52,7 +52,7 @@ let g:airline_theme='base16_gruvbox_dark_hard'
 
 Plug 'psf/black', { 'branch': 'stable' }
 let g:black_venv="~/.venv_tools"
-let g:black_linelength=99
+let g:black_linelength=120
 
 Plug 'timothycrosley/isort'
 

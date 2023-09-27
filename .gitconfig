@@ -1,6 +1,6 @@
 [user]
 	name = Ghislain Bourgeois
-	email = ghislain.bourgeois@gmail.com
+	email = ghislain.bourgeois@canonical.com
 	signingKey = 4B81C0DD0261DB75A314030B31D3C13CB697DB2D
 [push]
 	default = simple
@@ -22,3 +22,5 @@
 	gpgSign = true
 [init]
 	defaultBranch = main
+[stash]
+	showPatch = True

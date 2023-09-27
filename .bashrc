@@ -16,7 +16,7 @@ fi
 
 export PATH=~/bin:$PATH
 
-export GOPATH=~/Projects/go
+export GOPATH=~/projects/go
 
 # Set history
 export HISTSIZE=5000
