@@ -1,5 +1,7 @@
 # Ghislain's .bashrc
 
+export XDG_CONFIG_HOME="${HOME}/.config"
+
 # Set shell options
 if [[ ${BASH_VERSION%%.*} -ge 2 ]]; then
     shopt -s cdspell
