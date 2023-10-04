@@ -35,9 +35,7 @@ colors = gruvbox
 
 @lazy.function
 def lock(qtile):
-    subprocess.Popen(
-        "i3lock -i /home/ghislain/Pictures/wallpapers/seamless-2033661_640.png -e -t", shell=True
-    )
+    subprocess.Popen("i3lock -i /home/ghislain/Pictures/wallpapers/seamless-2033661_640.png -e -t", shell=True)
 
 
 @lazy.function
@@ -122,9 +120,7 @@ groups.append(
         [
             DropDown("term", "alacritty", x=0.25, y=0.25, width=0.5, height=0.5, opacity=1),
             DropDown("keepass", "keepassxc", x=0.25, y=0.25, width=0.5, height=0.5, opacity=1),
-            DropDown(
-                "cmus", "alacritty -e cmus", x=0.25, y=0.25, width=0.5, height=0.5, opacity=1
-            ),
+            DropDown("cmus", "alacritty -e cmus", x=0.25, y=0.25, width=0.5, height=0.5, opacity=1),
         ],
     ),
 )
@@ -185,9 +181,7 @@ def top_bar():
             ),
             widget.Spacer(),
             widget.TextBox(text="【", foreground=colors["bright_green"]),
-            widget.ThermalSensor(
-                tag_sensor="Package id 0", format="{temp:2.0f}ºC", update_interval=3
-            ),
+            widget.ThermalSensor(tag_sensor="Package id 0", format="{temp:2.0f}ºC", update_interval=3),
             widget.TextBox(text="】【", foreground=colors["bright_green"]),
             widget.CPU(format="{freq_current:.1f}GHz {load_percent:2.0f}%", update_interval=3),
             widget.TextBox(text="】【", foreground=colors["bright_green"]),
@@ -200,7 +194,7 @@ def top_bar():
             widget.Clock(format="%Y-%m-%d %a %H:%M"),
             widget.TextBox(text="】", foreground=colors["bright_green"]),
         ],
-        36,
+        50,
         background=colors["bg"] + "E0",
         margin=[4, 6, 0, 6],
     )
