@@ -16,7 +16,7 @@ if [[ ${BASH_VERSION%%.*} -ge 2 ]]; then
     fi
 fi
 
-export PATH=~/bin:$PATH
+export PATH=~/bin:/usr/local/bin:$PATH
 
 export GOPATH=~/projects/go
 
