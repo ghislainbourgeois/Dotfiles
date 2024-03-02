@@ -9,6 +9,7 @@ ln -sfn ~/Dotfiles/.vim ~/.vim
 ln -sfn ~/Dotfiles/tmux $XDG_CONFIG_HOME/tmux
 ln -sfn ~/Dotfiles/git $XDG_CONFIG_HOME/git
 ln -sfn ~/Dotfiles/alacritty $XDG_CONFIG_HOME/alacritty
+ln -sfn ~/Dotfiles/nvim $XDG_CONFIG_HOME/nvim
 ln -sfn ~/Dotfiles/.minttyrc ~/.minttyrc
 ln -sfn ~/Dotfiles/.i3 ~/.i3
 ln -sfn ~/Dotfiles/.Xresources ~/.Xresources
