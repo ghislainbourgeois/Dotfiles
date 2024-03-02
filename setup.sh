@@ -1,20 +1,21 @@
 #!/bin/bash
 
-ln -sf ~/Dotfiles/.bashrc ~/.bashrc
-ln -sf ~/Dotfiles/.inputrc ~/.inputrc
-ln -sf ~/Dotfiles/.vimrc ~/.vimrc
-ln -sf ~/Dotfiles/.vim ~/.vim
-ln -sf ~/Dotfiles/tmux $XDG_CONFIG_HOME/tmux
-ln -sf ~/Dotfiles/git $XDG_CONFIG_HOME/git
-ln -sf ~/Dotfiles/.minttyrc ~/.minttyrc
-ln -sf ~/Dotfiles/.i3 ~/.i3
-ln -sf ~/Dotfiles/.Xresources ~/.Xresources
+ln -sfn ~/Dotfiles/.bashrc ~/.bashrc
+source ~/.bashrc
+mkdir -p $XDG_CONFIG_HOME
+ln -sfn ~/Dotfiles/.inputrc ~/.inputrc
+ln -sfn ~/Dotfiles/.vimrc ~/.vimrc
+ln -sfn ~/Dotfiles/.vim ~/.vim
+ln -sfn ~/Dotfiles/tmux $XDG_CONFIG_HOME/tmux
+ln -sfn ~/Dotfiles/git $XDG_CONFIG_HOME/git
+ln -sfn ~/Dotfiles/alacritty $XDG_CONFIG_HOME/alacritty
+ln -sfn ~/Dotfiles/.minttyrc ~/.minttyrc
+ln -sfn ~/Dotfiles/.i3 ~/.i3
+ln -sfn ~/Dotfiles/.Xresources ~/.Xresources
 mkdir -p ~/.emacs.d
-ln -sf ~/Dotfiles/init.el ~/.emacs.d/init.el 
+ln -sfn ~/Dotfiles/init.el ~/.emacs.d/init.el
 mkdir -p ~/.config/qtile
-ln -sf ~/Dotfiles/qtile/config.py ~/.config/qtile/config.py
-ln -sf ~/Dotfiles/qtile/autostart.sh ~/.config/qtile/autostart.sh
-mkdir -p ~/.config/alacritty
-ln -sf ~/Dotfiles/alacritty.yml ~/.config/alacritty/alacritty.yml
+ln -sfn ~/Dotfiles/qtile/config.py ~/.config/qtile/config.py
+ln -sfn ~/Dotfiles/qtile/autostart.sh ~/.config/qtile/autostart.sh
 mkdir -p ~/.config/pipewire/pipewire.conf.d
-ln -sf ~/Dotfiles/10-virtual-mic.conf ~/.config/pipewire/pipewire.conf.d/10-virtual-mic.conf
+ln -sfn ~/Dotfiles/10-virtual-mic.conf ~/.config/pipewire/pipewire.conf.d/10-virtual-mic.conf
