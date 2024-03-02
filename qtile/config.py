@@ -3,9 +3,10 @@ import os
 
 from libqtile import bar, hook, layout, widget
 from libqtile.widget import backlight
-from libqtile.config import Click, Drag, DropDown, Group, Key, Match, Screen, ScratchPad
+from libqtile.config import (
+    Click, Drag, DropDown, Group, Key, Match, Screen, ScratchPad
+)
 from libqtile.lazy import lazy
-from libqtile.log_utils import logger
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
@@ -150,7 +151,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="monospace",
+    font="Hack Nerd Font Mono",
     fontsize=24,
     foreground=colors["fg"],
     padding=3,
