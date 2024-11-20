@@ -1,13 +1,16 @@
-import subprocess
 import os
+import subprocess
+from Xlib import display as xdisplay
 
 from libqtile import bar, hook, layout, widget
+from libqtile.log_utils import logger
 from libqtile.widget import backlight
 from libqtile.config import (
     Click, Drag, DropDown, Group, Key, Match, Screen, ScratchPad
 )
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
+from libqtile.utils import guess_terminal, send_notification
+
 
 mod = "mod4"
 terminal = guess_terminal()
@@ -83,6 +86,7 @@ keys = [
     Key([mod], "z", lazy.window.toggle_fullscreen()),
     Key([mod], "x", lock),
     Key([mod], "space", menu),
+    Key([mod, "control"], "p", lazy.spawn("scrot -s -f"), desc="Screenshot selected area"),
     Key(
         [],
         "XF86MonBrightnessUp",
@@ -159,7 +163,50 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 
-def top_bar():
+primary_bar = bar.Bar(
+        [
+            widget.GroupBox(
+                disable_drag=True,
+                fontsize=28,
+                highlight_method="block",
+                other_current_screen_border=colors["bright_blue"],
+                other_screen_border=colors["bright_blue"],
+                this_current_screen_border=colors["green"],
+                this_screen_border=colors["blue"],
+                inactive=colors["aqua"],
+                rounded=True,
+                urgent_border=colors["red"],
+            ),
+            widget.Chord(
+                chords_colors={
+                    "launch": ("#ff0000", "#ffffff"),
+                },
+                name_transform=lambda name: name.upper(),
+            ),
+            widget.Spacer(),
+            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
+            widget.ThermalSensor(tag_sensor="Package id 0", format="{temp:2.0f}ºC", update_interval=3),
+            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
+            widget.CPU(format="{freq_current:.1f}GHz {load_percent:2.0f}%", update_interval=3),
+            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
+            widget.Memory(measure_mem="G", update_interval=3),
+            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
+            widget.Backlight(backlight_name="intel_backlight"),
+            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
+            widget.Battery(low_foreground=colors["bright_red"]),
+            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
+            widget.Systray(),
+            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
+            widget.Clock(format="%Y-%m-%d %a %H:%M"),
+            widget.TextBox(text=" ", fontsize=12),
+        ],
+        50,
+        background=colors["bg"] + "E0",
+        margin=[4, 6, 0, 6],
+    )
+
+
+def secondary_bar():
     return bar.Bar(
         [
             widget.GroupBox(
@@ -181,19 +228,19 @@ def top_bar():
                 name_transform=lambda name: name.upper(),
             ),
             widget.Spacer(),
-            widget.TextBox(text="【", foreground=colors["bright_green"]),
+            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
             widget.ThermalSensor(tag_sensor="Package id 0", format="{temp:2.0f}ºC", update_interval=3),
-            widget.TextBox(text="】【", foreground=colors["bright_green"]),
+            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
             widget.CPU(format="{freq_current:.1f}GHz {load_percent:2.0f}%", update_interval=3),
-            widget.TextBox(text="】【", foreground=colors["bright_green"]),
+            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
             widget.Memory(measure_mem="G", update_interval=3),
-            widget.TextBox(text="】【", foreground=colors["bright_green"]),
+            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
             widget.Backlight(backlight_name="intel_backlight"),
-            widget.TextBox(text="】【", foreground=colors["bright_green"]),
+            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
             widget.Battery(low_foreground=colors["bright_red"]),
-            widget.TextBox(text="】【", foreground=colors["bright_green"]),
+            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
             widget.Clock(format="%Y-%m-%d %a %H:%M"),
-            widget.TextBox(text="】", foreground=colors["bright_green"]),
+            widget.TextBox(text=" ", fontsize=12),
         ],
         50,
         background=colors["bg"] + "E0",
@@ -201,14 +248,21 @@ def top_bar():
     )
 
 
-screens = [
-    Screen(
-        top=top_bar(),
-    ),
-    Screen(
-        top=top_bar(),
-    ),
-]
+def setup_screens():
+    screens = []
+    root = xdisplay.Display().screen().root
+    logger.warn(dir(root))
+    for m in root.xrandr_get_monitors().monitors:
+        if m.primary:
+            logger.warn("Setting primary screen")
+            screens.append(Screen(top=primary_bar))
+        else:
+            logger.warn("Setting secondary screen")
+            screens.append(Screen(top=secondary_bar()))
+    return screens
+
+
+screens = setup_screens()
 
 # Drag floating layouts.
 mouse = [
@@ -262,3 +316,9 @@ def hook_client_new(c):
         c.togroup("8")
     elif "qutebrowser" in c.info()["wm_class"]:
         c.togroup("2")
+
+
+@hook.subscribe.screens_reconfigured
+def hook_screen_reconfigured():
+    screens = setup_screens()
+    send_notification("qtile", "Screens have been reconfigured")

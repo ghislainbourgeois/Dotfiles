@@ -3,5 +3,6 @@ xss-lock --transfer-sleep-lock -- i3lock --nofork -i /home/ghislain/Pictures/wal
 ~/.fehbg &
 picom &
 nm-applet &
+blueman-applet &
 dropbox start &
 dunst &
