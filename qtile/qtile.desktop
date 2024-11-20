@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Name=QTile Session
+Exec=/home/ghislain/.local/bin/qtile start
+Icon=
+Type=Application
+DesktopNames=QTile
