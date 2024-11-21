@@ -1,0 +1,10 @@
+cairocffi[xcb]
+cffi
+dbus_next
+mypy
+mypy_extensions
+psutil
+six
+typing_extensions
+xcffib
+Xlib

@@ -16,7 +16,7 @@ if [[ ${BASH_VERSION%%.*} -ge 2 ]]; then
     fi
 fi
 
-export PATH=~/bin:/usr/local/bin:$PATH
+export PATH=~/.local/bin:~/.cargo/bin:~/bin:/usr/local/bin:$PATH
 
 export GOPATH=~/projects/go
 
@@ -52,10 +52,5 @@ if [ -e ~/.local_bashrc ]
 then
     source ~/.local_bashrc
 fi
-
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-. "$HOME/.cargo/env"
 
 eval "$(starship init bash)"
