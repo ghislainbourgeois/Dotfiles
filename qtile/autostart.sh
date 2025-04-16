@@ -1,5 +1,5 @@
 #!/bin/sh
-xss-lock --transfer-sleep-lock -- i3lock --nofork -i /home/ghislain/Pictures/wallpapers/seamless-2033661_640.png -t &
+xss-lock --transfer-sleep-lock -- i3lock --nofork -i /home/ghislain/Pictures/Wallpapers/macos-rancho-cucamonga-5k-ne.jpg -t &
 ~/.fehbg &
 picom &
 nm-applet &

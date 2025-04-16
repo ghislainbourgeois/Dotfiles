@@ -1,9 +1,7 @@
 import os
 import subprocess
-from Xlib import display as xdisplay
 
 from libqtile import bar, hook, layout, widget
-from libqtile.log_utils import logger
 from libqtile.widget import backlight
 from libqtile.config import (
     Click, Drag, DropDown, Group, Key, Match, Screen, ScratchPad
@@ -39,7 +37,7 @@ colors = gruvbox
 
 @lazy.function
 def lock(qtile):
-    subprocess.Popen("i3lock -i /home/ghislain/Pictures/wallpapers/seamless-2033661_640.png -e -t", shell=True)
+    subprocess.Popen("i3lock -i /home/ghislain/Pictures/Wallpapers/macos-rancho-cucamonga-5k-ne.jpg -e -t", shell=True)
 
 
 @lazy.function
@@ -146,6 +144,14 @@ layouts = [
         border_width=2,
         margin=6,
     ),
+    layout.MonadThreeCol(
+        border_focus=colors["bright_green"],
+        border_normal=colors["gray"],
+        border_focus_stack=[colors["green"], colors["bright_green"]],
+        border_width=2,
+        margin=6,
+        main_centered=True,
+    ),
     layout.Max(
         border_focus=colors["bright_green"],
         border_normal=colors["gray"],
@@ -156,9 +162,9 @@ layouts = [
 
 widget_defaults = dict(
     font="Hack Nerd Font Mono",
-    fontsize=24,
+    fontsize=18,
     foreground=colors["fg"],
-    padding=3,
+    padding=2,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -167,7 +173,7 @@ primary_bar = bar.Bar(
         [
             widget.GroupBox(
                 disable_drag=True,
-                fontsize=28,
+                fontsize=24,
                 highlight_method="block",
                 other_current_screen_border=colors["bright_blue"],
                 other_screen_border=colors["bright_blue"],
@@ -185,13 +191,9 @@ primary_bar = bar.Bar(
             ),
             widget.Spacer(),
             widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
-            widget.ThermalSensor(tag_sensor="Package id 0", format="{temp:2.0f}ºC", update_interval=3),
-            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
             widget.CPU(format="{freq_current:.1f}GHz {load_percent:2.0f}%", update_interval=3),
             widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
             widget.Memory(measure_mem="G", update_interval=3),
-            widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
-            widget.Backlight(backlight_name="intel_backlight"),
             widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
             widget.Battery(low_foreground=colors["bright_red"]),
             widget.TextBox(text=" ⦚ ", foreground=colors["bright_green"], fontsize=30),
@@ -249,16 +251,7 @@ def secondary_bar():
 
 
 def setup_screens():
-    screens = []
-    root = xdisplay.Display().screen().root
-    logger.warn(dir(root))
-    for m in root.xrandr_get_monitors().monitors:
-        if m.primary:
-            logger.warn("Setting primary screen")
-            screens.append(Screen(top=primary_bar))
-        else:
-            logger.warn("Setting secondary screen")
-            screens.append(Screen(top=secondary_bar()))
+    screens = [Screen(top=primary_bar)]
     return screens
 
 
@@ -316,9 +309,3 @@ def hook_client_new(c):
         c.togroup("8")
     elif "qutebrowser" in c.info()["wm_class"]:
         c.togroup("2")
-
-
-@hook.subscribe.screens_reconfigured
-def hook_screen_reconfigured():
-    screens = setup_screens()
-    send_notification("qtile", "Screens have been reconfigured")
